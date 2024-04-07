@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bas.Vampire.Monstrance", "Bas.Vampire.Monstrance\Bas.Vampire.Monstrance.vcxproj", "{3D490511-D914-49D1-8B2A-6E80BA3E0865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM.ActiveCfg = Debug|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM.Build.0 = Debug|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM.Deploy.0 = Debug|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM64.Build.0 = Debug|ARM64
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM.ActiveCfg = Release|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM.Build.0 = Release|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM.Deploy.0 = Release|ARM
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM64.ActiveCfg = Release|ARM64
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM64.Build.0 = Release|ARM64
+		{3D490511-D914-49D1-8B2A-6E80BA3E0865}.Release|ARM64.Deploy.0 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D7C0BF9-A92B-4CF6-8EE2-1360BFFBA1B0}
+	EndGlobalSection
+EndGlobal
