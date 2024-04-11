@@ -5,7 +5,6 @@
 */
 
 #include <Bas.Button.h>
-#include <Bas.SolenoidKicker.h>
 #include "Buzzer.h"
 
 const int lockButtonPin = 2;
@@ -14,10 +13,8 @@ const int smallBuzzerPinA = 8;
 const int smallBuzzerPinB = 9;
 const int largeBuzzerPinA = 10;
 const int largeBuzzerPinB = 11;
-const int kickerPin = 6;
 const int smallBuzzerSpeed = 52;
 const int largeBuzzerSpeed = 52;
-const unsigned long kickDuration = 500;
 const unsigned long debounceDelay = 50;
 const unsigned long smallBuzzDuration = 2000;
 const unsigned long largeBuzzDuration = 3000;
@@ -25,14 +22,11 @@ const unsigned long delayBeforeKick = 3000;
 
 bool isLockReleased = false;
 bool isRelicRemoved = false;
-unsigned long relicRemovalTime;
-bool hasKicked = false;
 
 Bas::Button lockButton{ lockButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
 Bas::Button relicButton{ relicButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
 Bas::Buzzer smallBuzzer{ smallBuzzerPinA, smallBuzzerPinB, Bas::Buzzer::LogLevel::normal };
 Bas::Buzzer largeBuzzer{ largeBuzzerPinA, largeBuzzerPinB, Bas::Buzzer::LogLevel::normal };
-Bas::SolenoidKicker kicker{ kickerPin, kickDuration, Bas::SolenoidKicker::LogLevel::normal };
 
 void setup() 
 {
@@ -42,24 +36,12 @@ void setup()
 
     lockButton.begin(onLockButtonPressed, onLockButtonReleased);
     relicButton.begin(onRelicButtonPressed, onRelicButtonReleased);
-    kicker.begin();
 }
 
 void loop() 
 {
     lockButton.update();
     relicButton.update();
-    kicker.update();
-  
-    if (isRelicRemoved && !hasKicked)
-    {
-        if (millis() - (relicRemovalTime + largeBuzzDuration) >= delayBeforeKick)
-        {
-            Serial.println("delayBeforeKick has passed, time to kick.");
-            hasKicked = true;
-            kicker.kick();
-        }
-    }
 }
 
 void onLockButtonPressed()
@@ -88,7 +70,6 @@ void onRelicButtonReleased()
     {
         Serial.println("Relic has been removed.");
         isRelicRemoved = true;
-        relicRemovalTime = millis();
         largeBuzzer.buzz(largeBuzzerSpeed, largeBuzzDuration);
     }
 }
