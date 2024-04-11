@@ -13,7 +13,8 @@ namespace Bas
 		enum class LogLevel { none = 0, normal };
 
 	private:
-		int pin;
+		int pinA;
+		int pinB;
 		unsigned long buzzDuration;
 		unsigned long buzzStartTime;
 		bool isBuzzing;
@@ -22,10 +23,11 @@ namespace Bas
 	public:
 		/// <summary>
 		/// Constructs the Buzzer object
-		/// <param name="pin">The pin the buzzer is connected to.</param>
+		/// <param name="pinA">The first pin the buzzer is connected to.</param>
+		/// <param name="pinB">The second pin the buzzer is connected to.</param>
 		/// <param name="logLevel">The verbosity of the logging the class outputs to Serial. Default is none.</param>
 		/// </summary>
-		Buzzer(int pin, LogLevel logLevel = LogLevel::none);
+		Buzzer(int pinA, int pinB, LogLevel logLevel = LogLevel::none);
 
 		/// <summary>
 		/// Initialize the Buzzer object.
@@ -39,9 +41,10 @@ namespace Bas
 
 		/// <summary>
 		/// Activate the buzzer to start buzzing.
+		/// <param name="speed">The speed at which the buzzer will buzz, between 0 and 255.</param>
 		/// <param name="duration">The amount of time in milliseconds to buzz.</param>
 		/// </summary>
-		void buzz(unsigned long duration);
+		void buzz(int speed, unsigned long duration);
 
 	};
 }

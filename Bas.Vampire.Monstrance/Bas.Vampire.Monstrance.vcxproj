@@ -74,7 +74,7 @@
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CAdditionalWarning />
       <CppAdditionalWarning />
-      <ForcedIncludeFiles>$(ProjectDir)..\..\..\..\..\..\program files\microsoft visual studio\2022\community\common7\ide\extensions\attszn5x.scx\Micro Platforms\default\vm-intelli-pre.h;$(ProjectDir)..\..\..\..\AppData\Local\Temp\VMBuilds\Bas.Vampire.Monstrance\uno2018\Debug\.vmintelli\3bdcc5d77dfe710f2bb1c7894ec66ee8\vm-intelli-gcc-defines.h;$(ProjectDir)..\..\..\..\..\..\program files\microsoft visual studio\2022\community\common7\ide\extensions\attszn5x.scx\Micro Platforms\default\vm-intelli-post.h;$(ProjectDir)__vm\.Bas.Vampire.Monstrance.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(ProjectDir)..\..\..\..\..\..\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\COMMON7\IDE\EXTENSIONS\ATTSZN5X.SCX\Micro Platforms\default\vm-intelli-pre.h;$(ProjectDir)..\..\..\..\AppData\Local\Temp\VMBuilds\Bas.Vampire.Monstrance\uno2018\Debug\.vmintelli\2a9e38d7e7a791c0b331392a2276d8ec\vm-intelli-gcc-defines.h;$(ProjectDir)..\..\..\..\..\..\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\COMMON7\IDE\EXTENSIONS\ATTSZN5X.SCX\Micro Platforms\default\vm-intelli-post.h;$(ProjectDir)__vm\.Bas.Vampire.Monstrance.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>_VMICRO_INTELLISENSE;__AVR_atmega4809__;__MEGAAVR_ATmega4809__;__AVR_ATmega4809__;F_CPU=16000000L;ARDUINO=108010;ARDUINO_AVR_UNO_WIFI_REV2;ARDUINO_ARCH_MEGAAVR;UNO_WIFI_REV2_328MODE;MILLIS_USE_TIMERB3;%(PreprocessorDefinitions)</PreprocessorDefinitions>

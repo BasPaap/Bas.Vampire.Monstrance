@@ -10,9 +10,13 @@
 
 const int lockButtonPin = 2;
 const int relicButtonPin = 3;
-const int smallBuzzerPin = 4;
-const int largeBuzzerPin = 5;
+const int smallBuzzerPinA = 8;
+const int smallBuzzerPinB = 9;
+const int largeBuzzerPinA = 10;
+const int largeBuzzerPinB = 11;
 const int kickerPin = 6;
+const int smallBuzzerSpeed = 52;
+const int largeBuzzerSpeed = 52;
 const unsigned long kickDuration = 500;
 const unsigned long debounceDelay = 50;
 const unsigned long smallBuzzDuration = 2000;
@@ -26,8 +30,8 @@ bool hasKicked = false;
 
 Bas::Button lockButton{ lockButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
 Bas::Button relicButton{ relicButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
-Bas::Buzzer smallBuzzer{ smallBuzzerPin, Bas::Buzzer::LogLevel::normal };
-Bas::Buzzer largeBuzzer{ largeBuzzerPin, Bas::Buzzer::LogLevel::normal };
+Bas::Buzzer smallBuzzer{ smallBuzzerPinA, smallBuzzerPinB, Bas::Buzzer::LogLevel::normal };
+Bas::Buzzer largeBuzzer{ largeBuzzerPinA, largeBuzzerPinB, Bas::Buzzer::LogLevel::normal };
 Bas::SolenoidKicker kicker{ kickerPin, kickDuration, Bas::SolenoidKicker::LogLevel::normal };
 
 void setup() 
@@ -74,7 +78,7 @@ void onLockButtonReleased()
     {
         Serial.println("Lock has been released.");
         isLockReleased = true;
-        smallBuzzer.buzz(smallBuzzDuration);
+        smallBuzzer.buzz(smallBuzzerSpeed, smallBuzzDuration);
     }
 }
 
@@ -85,6 +89,6 @@ void onRelicButtonReleased()
         Serial.println("Relic has been removed.");
         isRelicRemoved = true;
         relicRemovalTime = millis();
-        largeBuzzer.buzz(largeBuzzDuration);
+        largeBuzzer.buzz(largeBuzzerSpeed, largeBuzzDuration);
     }
 }

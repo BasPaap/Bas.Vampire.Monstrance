@@ -1,6 +1,6 @@
 #include "Buzzer.h"
 
-Bas::Buzzer::Buzzer(int pin, LogLevel logLevel) : pin{ pin }, logLevel{ logLevel }
+Bas::Buzzer::Buzzer(int pinA, int pinB, LogLevel logLevel) : pinA{ pinA }, pinB{ pinB }, logLevel { logLevel }
 {
 }
 
@@ -8,12 +8,16 @@ void Bas::Buzzer::begin()
 {
 	if (this->logLevel == LogLevel::normal)
 	{
-		Serial.print("Initializing Buzzer on pin ");
-		Serial.println(this->pin);
+		Serial.print("Initializing Buzzer on pins ");
+		Serial.print(this->pinA);
+		Serial.print(" and ");
+		Serial.println(this->pinB);
 	}
 
-	pinMode(this->pin, OUTPUT);
-	digitalWrite(this->pin, LOW);
+	pinMode(this->pinA, OUTPUT);
+	pinMode(this->pinB, OUTPUT);
+	digitalWrite(this->pinA, LOW);
+	analogWrite(this->pinB, LOW);
 }
 
 void Bas::Buzzer::update()
@@ -24,25 +28,39 @@ void Bas::Buzzer::update()
 		if (this->logLevel == LogLevel::normal)
 		{
 			Serial.print("Stopped buzzing on pin ");
-			Serial.println(this->pin);
+			Serial.println(this->pinA);
+			Serial.print(" and ");
+			Serial.println(this->pinB);
 		}
 
 		isBuzzing = false;
-		digitalWrite(this->pin, LOW);
+		digitalWrite(this->pinA, LOW);
+		analogWrite(this->pinB, LOW);
 	}
 }
 
-void Bas::Buzzer::buzz(unsigned long duration)
+void Bas::Buzzer::buzz(int speed, unsigned long duration)
 {
+	if (speed > 255)
+		speed = 255;
+
+	if (speed < 0)
+		speed = 0;
+
 	if (this->logLevel == LogLevel::normal)
 	{
-		Serial.print("Started buzzing for ");
+		Serial.print("Started buzzing at a speed of ");
+		Serial.print(speed);
+		Serial.print(" and a duration of ");
 		Serial.print(duration);
 		Serial.print(" milliseconds on pin ");
-		Serial.println(this->pin);
+		Serial.print(this->pinA);
+		Serial.print(" and ");
+		Serial.print(this->pinB);
 	}
 
 	buzzStartTime = millis();
 	isBuzzing = true;
-	digitalWrite(this->pin, HIGH);
+	digitalWrite(this->pinA, LOW);
+	analogWrite(this->pinA, speed);
 }
