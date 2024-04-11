@@ -4,6 +4,15 @@
   Released into the public domain.
 */
 
+#ifndef _BUZZER_h
+#define _BUZZER_h
+
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 namespace Bas
 {
 	// Encapsulate a buzzer motor. If the buzz() method is called the buzzer will be activated for the specified amount of time.
@@ -49,3 +58,4 @@ namespace Bas
 	};
 }
 
+#endif

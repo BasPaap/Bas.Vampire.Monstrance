@@ -23,8 +23,8 @@ const unsigned long delayBeforeKick = 3000;
 bool isLockReleased = false;
 bool isRelicRemoved = false;
 
-Bas::Button lockButton{ lockButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
-Bas::Button relicButton{ relicButtonPin, debounceDelay, Bas::Button::LogLevel::normal };
+Bas::Button lockButton{ lockButtonPin, debounceDelay, Bas::Button::LogLevel::none };
+Bas::Button relicButton{ relicButtonPin, debounceDelay, Bas::Button::LogLevel::none };
 Bas::Buzzer smallBuzzer{ smallBuzzerPinA, smallBuzzerPinB, Bas::Buzzer::LogLevel::normal };
 Bas::Buzzer largeBuzzer{ largeBuzzerPinA, largeBuzzerPinB, Bas::Buzzer::LogLevel::normal };
 
@@ -34,6 +34,8 @@ void setup()
     Serial.begin(9600);
     while (!Serial);  // wait for serial port to connect. Needed for native USB port only
 
+    Serial.println("Starting Vampire Monstrance");
+
     lockButton.begin(onLockButtonPressed, onLockButtonReleased);
     relicButton.begin(onRelicButtonPressed, onRelicButtonReleased);
 }
@@ -42,6 +44,8 @@ void loop()
 {
     lockButton.update();
     relicButton.update();
+    smallBuzzer.update();
+    largeBuzzer.update();
 }
 
 void onLockButtonPressed()

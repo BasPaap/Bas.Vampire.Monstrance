@@ -28,7 +28,7 @@ void Bas::Buzzer::update()
 		if (this->logLevel == LogLevel::normal)
 		{
 			Serial.print("Stopped buzzing on pin ");
-			Serial.println(this->pinA);
+			Serial.print(this->pinA);
 			Serial.print(" and ");
 			Serial.println(this->pinB);
 		}
@@ -56,9 +56,10 @@ void Bas::Buzzer::buzz(int speed, unsigned long duration)
 		Serial.print(" milliseconds on pin ");
 		Serial.print(this->pinA);
 		Serial.print(" and ");
-		Serial.print(this->pinB);
+		Serial.println(this->pinB);
 	}
 
+	buzzDuration = duration;
 	buzzStartTime = millis();
 	isBuzzing = true;
 	digitalWrite(this->pinA, LOW);
