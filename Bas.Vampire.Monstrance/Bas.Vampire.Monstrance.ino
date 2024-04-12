@@ -13,15 +13,18 @@ const int smallBuzzerPinA = 8;
 const int smallBuzzerPinB = 9;
 const int largeBuzzerPinA = 10;
 const int largeBuzzerPinB = 11;
-const int smallBuzzerSpeed = 52;
-const int largeBuzzerSpeed = 52;
-const unsigned long debounceDelay = 50;
-const unsigned long smallBuzzDuration = 2000;
+const int smallBuzzerSpeed = 1;
+const int largeBuzzerSpeed = 127;
+const unsigned long debounceDelay = 1000;
+const unsigned long smallBuzzDuration = 1000;
 const unsigned long largeBuzzDuration = 3000;
-const unsigned long delayBeforeKick = 3000;
+const unsigned long timeOutDuration = 10000;
 
 bool isLockReleased = false;
+unsigned long lockReleasedTime;
+
 bool isRelicRemoved = false;
+unsigned long relicRemovedTime;
 
 Bas::Button lockButton{ lockButtonPin, debounceDelay, Bas::Button::LogLevel::none };
 Bas::Button relicButton{ relicButtonPin, debounceDelay, Bas::Button::LogLevel::none };
@@ -35,7 +38,7 @@ void setup()
     while (!Serial);  // wait for serial port to connect. Needed for native USB port only
 
     Serial.println("Starting Vampire Monstrance");
-
+    
     lockButton.begin(onLockButtonPressed, onLockButtonReleased);
     relicButton.begin(onRelicButtonPressed, onRelicButtonReleased);
 }
@@ -50,12 +53,14 @@ void loop()
 
 void onLockButtonPressed()
 {
-    // Do nothing.
+    Serial.println("Lock has been closed.");
+    SetLockReleased(false);
 }
 
 void onRelicButtonPressed()
 {
-    // Do nothing.
+    Serial.println("Relic has been replaced.");
+    SetRelicRemoved(false);
 }
 
 void onLockButtonReleased()
@@ -63,7 +68,7 @@ void onLockButtonReleased()
     if (!isLockReleased)
     {
         Serial.println("Lock has been released.");
-        isLockReleased = true;
+        SetLockReleased();
         smallBuzzer.buzz(smallBuzzerSpeed, smallBuzzDuration);
     }
 }
@@ -73,7 +78,19 @@ void onRelicButtonReleased()
     if (!isRelicRemoved)
     {
         Serial.println("Relic has been removed.");
-        isRelicRemoved = true;
+        SetRelicRemoved();
         largeBuzzer.buzz(largeBuzzerSpeed, largeBuzzDuration);
     }
+}
+
+void SetLockReleased(bool isReleased = true)
+{
+    isLockReleased = isReleased;
+    lockReleasedTime = isReleased ? millis() : 0;
+}
+
+void SetRelicRemoved(bool isRemoved = true)
+{
+    isRelicRemoved = isRemoved;
+    relicRemovedTime = isRemoved ? millis() : 0;
 }
